@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 import os
 
-TOKEN = '7733017589:AAGm2kholXjdcYLfR-079SzcMu9Cv-KIQe0'
+TOKEN = '7675064862:AAELbDw84mVvSEgmIyUHGyIRM-yMb286_yo'
 app = Application.builder().token(TOKEN).build()
 
 
