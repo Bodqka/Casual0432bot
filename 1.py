@@ -1,93 +1,73 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
-import os
 
-TOKEN = '7675064862:AAELbDw84mVvSEgmIyUHGyIRM-yMb286_yo'
-app = Application.builder().token(TOKEN).build()
-
-
-# Основне меню
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton("Соціал", callback_data='social')],
-        [InlineKeyboardButton("OLX", callback_data='olx')],
-        [InlineKeyboardButton("Shafa", callback_data='shafa')],
-        [InlineKeyboardButton("Товари", callback_data='products')]
+        [InlineKeyboardButton("Соціальні мережі", callback_data="social")],
+        [InlineKeyboardButton("Товари", callback_data="products")],
+        [InlineKeyboardButton("Підтримка", callback_data="support")],
+        [InlineKeyboardButton("Конкурс", callback_data="contest")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
 
-    if update.message:  # Якщо запит через команду /start
-        await update.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
-    elif update.callback_query:  # Якщо запит через callback (наприклад, кнопка "Повернутися назад")
-        await update.callback_query.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
-
-
-# Обробка кнопок
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-
-    # Видалення попереднього повідомлення
-    await query.message.delete()
-
-    if query.data == 'social':
+    
+    if query.data == "social":
         keyboard = [
-            [InlineKeyboardButton("Конкурс", callback_data='contest')],
-            [InlineKeyboardButton("Instagram", callback_data='instagram')],
-            [InlineKeyboardButton("Facebook", callback_data='facebook')],
-            [InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]
+            [InlineKeyboardButton("Instagram", url="https://www.instagram.com/ваш_інста_посилання")],
+            [InlineKeyboardButton("Facebook", url="https://www.facebook.com/ваш_фейсбук_посилання")],
+            [InlineKeyboardButton("Повернутися назад", callback_data="start")]
         ]
-        await query.message.reply_text("Соціальні мережі:", reply_markup=InlineKeyboardMarkup(keyboard))
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text("Соціальні мережі:", reply_markup=reply_markup)
+    
+    elif query.data == "products":
+        keyboard = [
+            [InlineKeyboardButton("Переглянути", callback_data="view_products")],
+            [InlineKeyboardButton("OLX", url="https://www.olx.ua/ваше_олх_посилання")],
+            [InlineKeyboardButton("Shafa", url="https://www.shafa.ua/ваше_шафа_посилання")],
+            [InlineKeyboardButton("Повернутися назад", callback_data="start")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text("Товари:", reply_markup=reply_markup)
 
-    elif query.data == 'olx':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-            caption="Перейти до наших оголошень на OLX:\n[Переглянути OLX](https://olx.ua)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]])
-        )
+    elif query.data == "support":
+        keyboard = [
+            [InlineKeyboardButton("FAQ", callback_data="faq")],
+            [InlineKeyboardButton("Зворотній зв'язок", callback_data="contact_support")],
+            [InlineKeyboardButton("Повернутися назад", callback_data="start")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text("Підтримка:", reply_markup=reply_markup)
 
-    elif query.data == 'shafa':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14gIxVtNlHkm9HmHwIO9mizAfCgx0zsRV",
-            caption="Перейти до наших оголошень на Shafa:\n[Переглянути Shafa](https://shafa.ua)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]])
-        )
+    elif query.data == "faq":
+        keyboard = [
+            [InlineKeyboardButton("Повернутися назад", callback_data="support")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text("Часті питання та відповіді:", reply_markup=reply_markup)
 
-    elif query.data == 'products':
-        await query.message.reply_text("Тут будуть товари (завантажимо пізніше).", reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]]))
+    elif query.data == "contact_support":
+        await query.edit_message_text("Виникло питання? Звертайтесь: @casual0432support")
+        
+    elif query.data == "contest":
+        keyboard = [
+            [InlineKeyboardButton("Перейти до конкурсу", url="https://www.instagram.com/p/DBMGGlxs7Mm/")],
+            [InlineKeyboardButton("Повернутися назад", callback_data="start")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_text("Розіграш Светру від бренду Napapijri:", reply_markup=reply_markup)
 
-    elif query.data == 'contest':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=166ydt8yJ7d55xQKJTm-8tfbVjOf-uk_A",
-            caption="Візьміть участь у конкурсі: [Переглянути конкурс](https://www.instagram.com/p/DBMGGlxs7Mm/)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='social')]])
-        )
-
-    elif query.data == 'instagram':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14tDBbRixB2-Jcu_NaQPErZxUz_07VBsr",
-            caption="Наш Instagram: [Перейти в Instagram](https://www.instagram.com)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='social')]])
-        )
-
-    elif query.data == 'facebook':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=150ZxQ-rQT155M3n1USLcs7pU0nutf3T8",
-            caption="Наш Facebook: [Перейти у Facebook](https://www.facebook.com)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='social')]])
-        )
-
-    elif query.data == 'main_menu':
+    elif query.data == "view_products":
+        await query.edit_message_text("Тут будуть товари, які ви завантажите самостійно.")
+    
+    elif query.data == "start":
         await start(update, context)
 
-
-# Додавання обробників
+app = Application.builder().token("ВАШ_ТОКЕН").build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
