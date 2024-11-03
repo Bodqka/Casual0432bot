@@ -67,7 +67,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "start":
         await start(update, context)
 
-app = Application.builder().token("ВАШ_ТОКЕН").build()
+app = Application.builder().token("7675064862:AAELbDw84mVvSEgmIyUHGyIRM-yMb286_yo).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
