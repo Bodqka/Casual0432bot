@@ -83,7 +83,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == 'olx':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-            caption="Оголошення на OLX:\n[Casual Vinnytsya](https://olx.ua)",
+            caption="Оголошення на OLX:\n[Casual Vinnytsya](https://www.olx.ua/uk/list/user/vXRAm/)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
         )
@@ -91,7 +91,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == 'shafa':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14gIxVtNlHkm9HmHwIO9mizAfCgx0zsRV",
-            caption="Оголошення на Shafa:\n[CASUAL 0432](https://shafa.ua)",
+            caption="Оголошення на Shafa:\n[CASUAL 0432](https://shafa.ua/uk/member/nechto7inoe)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
         )
