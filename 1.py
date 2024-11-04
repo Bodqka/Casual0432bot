@@ -35,12 +35,23 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'products':
         keyboard = [
-            [InlineKeyboardButton("Переглянути товари👕👖👟", callback_data='view_products')],
-            [InlineKeyboardButton("OLX", callback_data='olx')],
-            [InlineKeyboardButton("Shafa", callback_data='shafa')],
+            [InlineKeyboardButton("Чоловічі", callback_data='mens_products')],
+            [InlineKeyboardButton("Жіночі", callback_data='womens_products')],
             [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
         ]
-        await query.message.reply_text("Товари:", reply_markup=InlineKeyboardMarkup(keyboard))
+        await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
+
+    elif query.data == 'mens_products':
+        await query.message.reply_text(
+            "Тут буде список чоловічих товарів. (Завантажимо пізніше)",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
+        )
+
+    elif query.data == 'womens_products':
+        await query.message.reply_text(
+            "Тут буде список жіночих товарів. (Завантажимо пізніше)",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
+        )
 
     elif query.data == 'support':
         keyboard = [
@@ -74,31 +85,14 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='social')]])
         )
 
-    elif query.data == 'view_products':
-        await query.message.reply_text(
-            "Працюємо над цим....",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
-        )
-
-    elif query.data == 'olx':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-            caption="Оголошення на OLX:\n[Casual Vinnytsya](https://www.olx.ua/uk/list/user/vXRAm/)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
-        )
-
-    elif query.data == 'shafa':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14gIxVtNlHkm9HmHwIO9mizAfCgx0zsRV",
-            caption="Оголошення на Shafa:\n[CASUAL 0432](https://shafa.ua/uk/member/nechto7inoe)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
-        )
-
     elif query.data == 'faq':
         await query.message.reply_text(
-            "Працюємо над цим....",
+            "FAQ:\n\n"
+            "1. Чи є продаж без сайтів? - Так, можливо, зв'яжіться з підтримкою.\n\n"
+            "2. Чи є повернення товару, якщо не підійшов або з інших причин? - Так, зв'яжіться з підтримкою.\n\n"
+            "3. Способи оплати:\n"
+            "   - OLX: лише OLX доставка, оплата повної суми, яка заморожується до отримання замовлення.\n"
+            "   - Shafa: передоплата на карту або післяплата з мінімальною передоплатою 100 грн. або опція схожа на OLX доставку.",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
         )
 
@@ -116,4 +110,3 @@ app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
 app.run_polling()
-
