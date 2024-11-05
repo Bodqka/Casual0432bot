@@ -60,19 +60,26 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "- Розмір: 38\n"
             "- Стан: Ідеальний\n"
             "Ціна: 800 грн\n\n"
-            "Фото:\n"
-            "https://drive.google.com/file/d/1fB8Gvd0DllFqURyldQjKhLvlnyXO6MtM/view\n"
-            "https://drive.google.com/file/d/1fFoLVOsuGJOCWP6Qa3KCFEMkGnBjRis1/view\n"
-            "https://drive.google.com/file/d/1fJ4mxJj1SbH2FMmOD07MWV04bHXVTOY2/view\n"
-            "https://drive.google.com/file/d/1fMaz9pBzddVQutFleqJAp2fXBZacA1cK/view\n"
-            "https://drive.google.com/file/d/1fT6gG8BEHXUuGjl-UycwS0JtjS5JCYfQ/view\n"
-            "https://drive.google.com/file/d/1fWoa_zPWSyUdJ2E-hEvqXm2l3Vn6i8AG/view\n"
         )
+        
+        photos = [
+            "https://drive.google.com/uc?export=view&id=1fB8Gvd0DllFqURyldQjKhLvlnyXO6MtM",
+            "https://drive.google.com/uc?export=view&id=1fFoLVOsuGJOCWP6Qa3KCFEMkGnBjRis1",
+            "https://drive.google.com/uc?export=view&id=1fJ4mxJj1SbH2FMmOD07MWV04bHXVTOY2",
+            "https://drive.google.com/uc?export=view&id=1fMaz9pBzddVQutFleqJAp2fXBZacA1cK",
+            "https://drive.google.com/uc?export=view&id=1fT6gG8BEHXUuGjl-UycwS0JtjS5JCYfQ",
+            "https://drive.google.com/uc?export=view&id=1fWoa_zPWSyUdJ2E-hEvqXm2l3Vn6i8AG"
+        ]
         
         keyboard = [
             [InlineKeyboardButton("Замовити", url="https://t.me/casual0432support")],
             [InlineKeyboardButton("Повернутися назад◀", callback_data='womens_footwear')]
         ]
+        
+        # Відправка фото та опису
+        for photo in photos:
+            await query.message.reply_photo(photo=photo)
+
         await query.message.reply_text(description, reply_markup=InlineKeyboardMarkup(keyboard))
 
     # Повернення до головного меню
