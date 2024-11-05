@@ -97,9 +97,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
     elif query.data == 'contact':
-        await query.message.reply_text(
-            "Є запитання? Звертайтесь: @casual0432support",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
+         await query.message.reply_photo(
+             photo="https://drive.google.com/uc?id=1gzRzbx3Ji2nK6CL8cWb2ZKEmholIIIX3",
+             caption="Є запитання? Звертайтесь: @casual0432support",
+             parse_mode="Markdown",
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
         )
 
     elif query.data == 'main_menu':
