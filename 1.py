@@ -54,7 +54,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         
         keyboard = [
-            [InlineKeyboardButton("Замовити", url="https://t.me/casual0432")],
+            [InlineKeyboardButton("Замовити", url="https://t.me/casual0432support")],
             [InlineKeyboardButton("Повернутися назад◀", callback_data='footwear')]
         ]
         await query.message.reply_text(description, reply_markup=InlineKeyboardMarkup(keyboard))
