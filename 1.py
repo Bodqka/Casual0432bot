@@ -25,7 +25,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     await query.message.delete()
 
-    # Соціальні мережі
     if query.data == 'social':
         keyboard = [
             [InlineKeyboardButton("Instagram🖼️", callback_data='instagram')],
@@ -34,125 +33,75 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ]
         await query.message.reply_text("Наші соціальні мережі:", reply_markup=InlineKeyboardMarkup(keyboard))
 
-    # Меню товарів
     elif query.data == 'products':
         keyboard = [
-            [InlineKeyboardButton("Взуття👟", callback_data='footwear')],
-            [InlineKeyboardButton("Штани👖", callback_data='pants')],
-            [InlineKeyboardButton("Шорти🩳", callback_data='shorts')],
-            [InlineKeyboardButton("Футболки👕", callback_data='tshirts')],
-            [InlineKeyboardButton("Кофти🧥", callback_data='hoodies')],
-            [InlineKeyboardButton("Куртки🧥", callback_data='jackets')],
-            [InlineKeyboardButton("Аксесуари🎒", callback_data='accessories')],
+            [InlineKeyboardButton("Чоловічі", callback_data='mens_products')],
+            [InlineKeyboardButton("Жіночі", callback_data='womens_products')],
             [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
         ]
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
 
-    # Взуття
-    elif query.data == 'footwear':
-        keyboard = [
-            [InlineKeyboardButton("Чоловіче", callback_data='mens_footwear')],
-            [InlineKeyboardButton("Жіноче", callback_data='womens_footwear')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Взуття:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'mens_products':
+        await query.message.reply_text(
+            "Тут буде список чоловічих товарів. (Завантажимо пізніше)",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
+        )
 
-    # Штани
-    elif query.data == 'pants':
-        keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_pants')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_pants')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Штани:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'womens_products':
+        await query.message.reply_text(
+            "Тут буде список жіночих товарів. (Завантажимо пізніше)",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
+        )
 
-    elif query.data == 'mens_pants':
+    elif query.data == 'support':
         keyboard = [
-            [InlineKeyboardButton("Джинси", callback_data='mens_jeans')],
-            [InlineKeyboardButton("Спортивні", callback_data='mens_sport_pants')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='pants')]
+            [InlineKeyboardButton("FAQ⚠", callback_data='faq')],
+            [InlineKeyboardButton("Зворотній зв'язок📞", callback_data='contact')],
+            [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
         ]
-        await query.message.reply_text("Чоловічі штани:", reply_markup=InlineKeyboardMarkup(keyboard))
+        await query.message.reply_text("Підтримка:", reply_markup=InlineKeyboardMarkup(keyboard))
 
-    elif query.data == 'womens_pants':
-        keyboard = [
-            [InlineKeyboardButton("Джинси", callback_data='womens_jeans')],
-            [InlineKeyboardButton("Спортивні", callback_data='womens_sport_pants')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='pants')]
-        ]
-        await query.message.reply_text("Жіночі штани:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'contest':
+        await query.message.reply_photo(
+            photo="https://drive.google.com/uc?export=view&id=166ydt8yJ7d55xQKJTm-8tfbVjOf-uk_A",
+            caption="Розіграш Светру від бренду Napapijri: [Пост у Instagram](https://www.instagram.com/p/DBMGGlxs7Mm/)",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
+        )
 
-    # Шорти
-    elif query.data == 'shorts':
-        keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_shorts')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_shorts')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Шорти:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'instagram':
+        await query.message.reply_photo(
+            photo="https://drive.google.com/uc?export=view&id=14tDBbRixB2-Jcu_NaQPErZxUz_07VBsr",
+            caption="Наш Instagram: [Casual.0432](https://www.instagram.com/casual.0432/)",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='social')]])
+        )
 
-    # Футболки
-    elif query.data == 'tshirts':
-        keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_tshirts')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_tshirts')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Футболки:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'facebook':
+        await query.message.reply_photo(
+            photo="https://drive.google.com/uc?export=view&id=150ZxQ-rQT155M3n1USLcs7pU0nutf3T8",
+            caption="Наш Facebook: [Кежуал Вінниця](https://www.facebook.com/profile.php?id=61555261808269)",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='social')]])
+        )
 
-    elif query.data == 'mens_tshirts':
-        keyboard = [
-            [InlineKeyboardButton("Звичайні", callback_data='mens_regular_tshirt')],
-            [InlineKeyboardButton("Поло", callback_data='mens_polo_tshirt')],
-            [InlineKeyboardButton("Термо", callback_data='mens_thermal_tshirt')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='tshirts')]
-        ]
-        await query.message.reply_text("Чоловічі футболки:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'faq':
+        await query.message.reply_text(
+            "FAQ:\n\n"
+            "1. Чи є продаж без сайтів? - Так, можливо, зв'яжіться з підтримкою.\n\n"
+            "2. Чи є повернення товару, якщо не підійшов або з інших причин? - Так, зв'яжіться з підтримкою.\n\n"
+            "3. Способи оплати:\n"
+            "   - OLX: лише OLX доставка, оплата повної суми, яка заморожується до отримання замовлення.\n"
+            "   - Shafa: передоплата на карту або післяплата з мінімальною передоплатою 100 грн. або опція схожа на OLX доставку.",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
+        )
 
-    elif query.data == 'womens_tshirts':
-        keyboard = [
-            [InlineKeyboardButton("Звичайні", callback_data='womens_regular_tshirt')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='tshirts')]
-        ]
-        await query.message.reply_text("Жіночі футболки:", reply_markup=InlineKeyboardMarkup(keyboard))
+    elif query.data == 'contact':
+        await query.message.reply_text(
+            "Є запитання? Звертайтесь: @casual0432support",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
+        )
 
-    # Кофти
-    elif query.data == 'hoodies':
-        keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_hoodies')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_hoodies')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Кофти:", reply_markup=InlineKeyboardMarkup(keyboard))
-
-    elif query.data == 'mens_hoodies':
-        keyboard = [
-            [InlineKeyboardButton("Худі", callback_data='mens_hoodie')],
-            [InlineKeyboardButton("Зіпхуді", callback_data='mens_zip_hoodie')],
-            [InlineKeyboardButton("Світшоти", callback_data='mens_sweatshirt')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='hoodies')]
-        ]
-        await query.message.reply_text("Чоловічі кофти:", reply_markup=InlineKeyboardMarkup(keyboard))
-
-    # Куртки
-    elif query.data == 'jackets':
-        keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_jackets')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_jackets')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Куртки:", reply_markup=InlineKeyboardMarkup(keyboard))
-
-    # Аксесуари
-    elif query.data == 'accessories':
-        keyboard = [
-            [InlineKeyboardButton("Шапки", callback_data='hats')],
-            [InlineKeyboardButton("Сумки", callback_data='bags')],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
-        ]
-        await query.message.reply_text("Аксесуари:", reply_markup=InlineKeyboardMarkup(keyboard))
-
-    # Повернення до головного меню
     elif query.data == 'main_menu':
         await start(update, context)
 
