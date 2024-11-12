@@ -33,6 +33,8 @@ async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("Гольф Ralph Lauren", url='https://t.me/casual0432/187')],
         [InlineKeyboardButton("Футболка Fila", url='https://t.me/casual0432/276')],
         [InlineKeyboardButton("Куртка Karrimor", url='https://t.me/casual0432/303')],
+        [InlineKeyboardButton("Adidas originals укорочена футболка", url='https://t.me/casual0432/467')],
+        [InlineKeyboardButton("George худі", url='https://t.me/casual0432/499')],
         [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
     ]
     await update.callback_query.message.reply_text("Жіночі товари:", reply_markup=InlineKeyboardMarkup(keyboard))
