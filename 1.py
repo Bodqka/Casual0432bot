@@ -19,6 +19,36 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif update.callback_query:
         await update.callback_query.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
 
+# Додавання товарів до розділу «Жіночі»
+async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton("Кеди Vans", url='https://t.me/casual0432/4')],
+        [InlineKeyboardButton("Футболка FSBN", url='https://t.me/casual0432/62')],
+        [InlineKeyboardButton("Топ Adidas originals", url='https://t.me/casual0432/65')],
+        [InlineKeyboardButton("Футболка The North Face", url='https://t.me/casual0432/68')],
+        [InlineKeyboardButton("Футболка The North Face", url='https://t.me/casual0432/93')],
+        [InlineKeyboardButton("Nike шорти", url='https://t.me/casual0432/131')],
+        [InlineKeyboardButton("Жіночі штани", url='https://t.me/casual0432/160')],
+        [InlineKeyboardButton("Джинси Levi's San Francisco", url='https://t.me/casual0432/163')],
+        [InlineKeyboardButton("Гольф Ralph Lauren", url='https://t.me/casual0432/187')],
+        [InlineKeyboardButton("Футболка Fila", url='https://t.me/casual0432/276')],
+        [InlineKeyboardButton("Куртка Karrimor", url='https://t.me/casual0432/303')],
+        [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
+    ]
+    await update.callback_query.message.reply_text("Жіночі товари:", reply_markup=InlineKeyboardMarkup(keyboard))
+
+# Додавання товарів до розділу «Чоловічі»
+async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton("Штани Ellesse", url='https://t.me/casual0432/10')],
+        [InlineKeyboardButton("Штани Adidas Performance Essentials", url='https://t.me/casual0432/15')],
+        [InlineKeyboardButton("Джинси Levi's", url='https://t.me/casual0432/19')],
+        [InlineKeyboardButton("Футболка Lyle and Scott", url='https://t.me/casual0432/23')],
+        [InlineKeyboardButton("Шорти Dickies", url='https://t.me/casual0432/27')],
+        [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
+    ]
+    await update.callback_query.message.reply_text("Чоловічі товари:", reply_markup=InlineKeyboardMarkup(keyboard))
+
 # Обробка кнопок
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -42,16 +72,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
 
     elif query.data == 'mens_products':
-        await query.message.reply_text(
-            "Тут буде список чоловічих товарів. (Завантажимо пізніше)",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
-        )
+        await mens_products(update, context)
 
     elif query.data == 'womens_products':
-        await query.message.reply_text(
-            "Тут буде список жіночих товарів. (Завантажимо пізніше)",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='products')]])
-        )
+        await womens_products(update, context)
 
     elif query.data == 'support':
         keyboard = [
@@ -97,11 +121,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
     elif query.data == 'contact':
-         await query.message.reply_photo(
-             photo="https://drive.google.com/uc?id=1gzRzbx3Ji2nK6CL8cWb2ZKEmholIIIX3",
-             caption="Є запитання? Звертайтесь: @casual0432support",
-             parse_mode="Markdown",
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
+        await query.message.reply_photo(
+            photo="https://drive.google.com/uc?id=1gzRzbx3Ji2nK6CL8cWb2ZKEmholIIIX3",
+            caption="Є запитання? Звертайтесь: @casual0432support",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='support')]])
         )
 
     elif query.data == 'main_menu':
