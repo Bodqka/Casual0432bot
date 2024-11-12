@@ -37,7 +37,7 @@ async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("George худі", url='https://t.me/casual0432/499')],
         [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
     ]
-    await update.callback_query.message.reply_text("Жіночі товари:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.callback_query.message.reply_text("Жіночі👩 товари📦:", reply_markup=InlineKeyboardMarkup(keyboard))
 
 # Додавання товарів до розділу «Чоловічі»
 async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -49,7 +49,7 @@ async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("Шорти Dickies", url='https://t.me/casual0432/27')],
         [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
     ]
-    await update.callback_query.message.reply_text("Чоловічі товари:", reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.callback_query.message.reply_text("Чоловічі🧔 товари📦:", reply_markup=InlineKeyboardMarkup(keyboard))
 
 # Обробка кнопок
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -67,8 +67,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'products':
         keyboard = [
-            [InlineKeyboardButton("Чоловічі", callback_data='mens_products')],
-            [InlineKeyboardButton("Жіночі", callback_data='womens_products')],
+            [InlineKeyboardButton("Чоловічі🧔", callback_data='mens_products')],
+            [InlineKeyboardButton("Жіночі👩", callback_data='womens_products')],
             [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
         ]
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
