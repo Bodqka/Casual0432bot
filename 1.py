@@ -17,7 +17,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message:
         await update.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
     elif update.callback_query:
-        await update.callback_query.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
+        await update.callback_query.message.reply_text("Головне меню⬇", reply_markup=reply_markup)
 
 # Додавання товарів до розділу «Жіночі»
 async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
