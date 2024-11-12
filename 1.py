@@ -128,7 +128,17 @@ async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("Футболка Champion", url='https://t.me/casual0432/391')],
         [InlineKeyboardButton("Футболка Ben Sherman", url='https://t.me/casual0432/396')],
         [InlineKeyboardButton("Шорти Ellesse", url='https://t.me/casual0432/399')],
-
+        [InlineKeyboardButton("Футболка Ральф лаурен", url="https://t.me/casual0432/404")],
+        [InlineKeyboardButton("Шорти HM", url="https://t.me/casual0432/407")],
+        [InlineKeyboardButton("Футболка Nike тішка", url="https://t.me/casual0432/410")],
+        [InlineKeyboardButton("Шорти Champion", url="https://t.me/casual0432/413")],
+        [InlineKeyboardButton("Худі Money", url="https://t.me/casual0432/417")],
+        [InlineKeyboardButton("Світшот Tommy Hilfiger", url="https://t.me/casual0432/422")],
+        [InlineKeyboardButton("Фліска Regatta", url="https://t.me/casual0432/426")],
+        [InlineKeyboardButton("Зіпка Adidas", url="https://t.me/casual0432/430")],
+        [InlineKeyboardButton("Штани Ralph Lauren", url="https://t.me/casual0432/436")],
+        [InlineKeyboardButton("Штани Champion", url="https://t.me/casual0432/439")],
+        [InlineKeyboardButton("Штани Champion", url="https://t.me/casual0432/442")],
         [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
     ]
     await update.callback_query.message.reply_text("Чоловічі🧔 товари📦:", reply_markup=InlineKeyboardMarkup(keyboard))
