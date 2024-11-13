@@ -1,5 +1,6 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram.error import BadRequest
 
 TOKEN = '7675064862:AAELbDw84mVvSEgmIyUHGyIRM-yMb286_yo'
 app = Application.builder().token(TOKEN).build()
@@ -16,15 +17,27 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
+# Функція для відправки посту з каналу
+async def send_post_from_channel(chat_id: int, message_id: int, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        await context.bot.forward_message(chat_id=chat_id, from_chat_id='@casual0432', message_id=message_id)
+    except BadRequest as e:
+        print(f"Error: {e}")
+    
     if update.message:
         await update.message.reply_text("Виберіть опцію:", reply_markup=reply_markup)
     elif update.callback_query:
         await update.callback_query.message.reply_text("Головне меню⬇", reply_markup=reply_markup)
 
+# Обробка кнопок для товарів
+async def products_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
 # Додавання товарів до розділу «Жіночі»
 async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [
-        [InlineKeyboardButton("Кеди Vans", url='https://t.me/casual0432/4')],
+    products_keyboard = [
+        [InlineKeyboardButton("Кеди Vans", callback_data='post_4')],
         [InlineKeyboardButton("Футболка FSBN", url='https://t.me/casual0432/62')],
         [InlineKeyboardButton("Топ Adidas originals", url='https://t.me/casual0432/65')],
         [InlineKeyboardButton("Футболка The North Face", url='https://t.me/casual0432/68')],
@@ -144,6 +157,13 @@ async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("Повернутися назад◀", callback_data='products')]
     ]
     await update.callback_query.message.reply_text("Чоловічі🧔 товари📦:", reply_markup=InlineKeyboardMarkup(keyboard))
+
+# Обробка запиту на пересилку поста з каналу
+async def post_forward_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    product_id = query.data.split('_')[1]  # Отримання message_id з callback_data
+    await send_post_from_channel(query.message.chat_id, int(product_id), context)
 
 # Обробка кнопок
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
