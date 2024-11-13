@@ -166,13 +166,15 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
         ]
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
-elif query.data == 'olx':
+  
+    elif query.data == 'olx':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
             caption="Перейти до наших оголошень на OLX:\n[Переглянути OLX](https://olx.ua)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]])
         )
+        
    elif query.data == 'shafa':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14gIxVtNlHkm9HmHwIO9mizAfCgx0zsRV",
@@ -180,6 +182,7 @@ elif query.data == 'olx':
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад", callback_data='main_menu')]])
         )
+
     elif query.data == 'mens_products':
         await mens_products(update, context)
 
