@@ -8,7 +8,8 @@ app = Application.builder().token(TOKEN).build()
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("Товари👕👖👟", callback_data='products')],
-        [InlineKeyboardButton("OLX📑", callback_data='olx'), [InlineKeyboardButton("Shafa📄", callback_data='shafa')],
+        [InlineKeyboardButton("OLX📑", callback_data='olx')],
+        [InlineKeyboardButton("Shafa📄", callback_data='shafa')],
         [InlineKeyboardButton("Соціальні мережі👥", callback_data='social')],
         [InlineKeyboardButton("Підтримка🆘", callback_data='support')],
         [InlineKeyboardButton("Конкурс🏆", callback_data='contest')]
