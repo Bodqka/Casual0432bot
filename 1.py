@@ -139,8 +139,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'contest':
         await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=166ydt8yJ7d55xQKJTm-8tfbVjOf-uk_A",
-            caption="Розіграш Светру від бренду Napapijri: [Пост у Instagram](https://www.instagram.com/p/DBMGGlxs7Mm/)",
+            photo="https://drive.google.com/uc?export=view&id=1x7CXxTLX1e4_reBY_q4znCyLLxtaDenK",
+            caption="На данний час конкурсів немає.. Слідкуйте за оновленнями у нашому інстаграмі: [Casual0432](https://www.instagram.com/casual.0432/)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
         )
