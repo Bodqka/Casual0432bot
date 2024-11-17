@@ -24,8 +24,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Додавання товарів до розділу «Жіночі»
 async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton("Кеди Vans", url='https://t.me/casual0432/4')],
-        [InlineKeyboardButton("Футболка FSBN", url='https://t.me/casual0432/62')],
+        [InlineKeyboardButton("Кеди Vans", url='https://t.me/casual0432/4'), InlineKeyboardButton("Футболка FSBN", url='https://t.me/casual0432/62')],
         [InlineKeyboardButton("Топ Adidas originals", url='https://t.me/casual0432/65')],
         [InlineKeyboardButton("Футболка The North Face", url='https://t.me/casual0432/68')],
         [InlineKeyboardButton("Футболка The North Face", url='https://t.me/casual0432/93')],
