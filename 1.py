@@ -44,7 +44,6 @@ async def womens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Додавання товарів до розділу «Чоловічі»
 async def mens_products(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton("Штани Ellesse", url='https://t.me/casual0432/10')],
         [InlineKeyboardButton("Штани Adidas Performance Essentials", url='https://t.me/casual0432/15')],
         [InlineKeyboardButton("Джинси Levi's", url='https://t.me/casual0432/19')],
         [InlineKeyboardButton("Футболка Lyle and Scott", url='https://t.me/casual0432/23')],
