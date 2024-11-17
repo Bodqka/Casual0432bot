@@ -8,7 +8,7 @@ app = Application.builder().token(TOKEN).build()
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("Товари👕👖👟", callback_data='products')],
-        [InlineKeyboardButton("OLX🥇", callback_data='olx'), InlineKeyboardButton("Shafa🥈", callback_data='shafa')],
+        [InlineKeyboardButton("OLX📑", callback_data='olx'), InlineKeyboardButton("Shafa📄", callback_data='shafa')],
         [InlineKeyboardButton("Соціальні мережі👥", callback_data='social')],
         [InlineKeyboardButton("Підтримка🆘", callback_data='support'), InlineKeyboardButton("Конкурс🏆", callback_data='contest')]
     ]
@@ -112,12 +112,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == 'olx':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-            caption="Наша сторінка на OLX",
+            caption="Наша сторінка на OLX:\n[Переглянути OLX](https://www.olx.ua/uk/list/user/vXRAm/)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
         )
-        
-      elif query.data == 'shafa':
+    
+    elif query.data == 'shafa':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14gIxVtNlHkm9HmHwIO9mizAfCgx0zsRV",
             caption="Наша сторінка на Shafa:\n[Переглянути Shafa](https://shafa.ua/uk/member/nechto7inoe)",
