@@ -114,9 +114,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
             caption="Наша сторінка на OLX",
             parse_mode="Markdown",
-            [InlineKeyboardButton("Переглянути OLX", url="https://www.olx.ua/uk/list/user/vXRAm/")],
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
-        
         )
         
       elif query.data == 'shafa':
