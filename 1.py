@@ -7,9 +7,11 @@ app = Application.builder().token(TOKEN).build()
 # Основне меню
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton("Товари👕👖👟", callback_data='products') ,InlineKeyboardButton("Конкурс🏆", callback_data='contest')]
-        [InlineKeyboardButton("OLX📑", callback_data='olx'), InlineKeyboardButton("Shafa📄", callback_data='shafa')],
-        [InlineKeyboardButton("Соціальні мережі👥", callback_data='social'), InlineKeyboardButton("Підтримка🆘", callback_data='support')],
+        [InlineKeyboardButton("Товари👕👖👟", callback_data='products')],
+        [InlineKeyboardButton("OLX📑", callback_data='olx'), [InlineKeyboardButton("Shafa📄", callback_data='shafa')],
+        [InlineKeyboardButton("Соціальні мережі👥", callback_data='social')],
+        [InlineKeyboardButton("Підтримка🆘", callback_data='support')],
+        [InlineKeyboardButton("Конкурс🏆", callback_data='contest')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -108,14 +110,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ]
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
   
-  elif query.data == 'olx':
-    await query.message.reply_photo(
-        photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-        caption="Наша сторінка на OLX:",
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Переглянути OLX", url="https://www.olx.ua/uk/list/user/vXRAm/")],
-            [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
-        ])
+    elif query.data == 'olx':
+        await query.message.reply_photo(
+            photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
+            caption="Наша сторінка на OLX:\n[Переглянути OLX](https://www.olx.ua/uk/list/user/vXRAm/)",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
+        )
     
     elif query.data == 'shafa':
         await query.message.reply_photo(
@@ -140,8 +141,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'contest':
         await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=1x7CXxTLX1e4_reBY_q4znCyLLxtaDenK",
-            caption="На данний час конкурсів немає.. Слідкуйте за оновленнями у нашому інстаграмі: [Casual0432](https://www.instagram.com/casual.0432/)",
+            photo="https://drive.google.com/uc?export=view&id=166ydt8yJ7d55xQKJTm-8tfbVjOf-uk_A",
+            caption="Розіграш Светру від бренду Napapijri: [Пост у Instagram](https://www.instagram.com/p/DBMGGlxs7Mm/)",
             parse_mode="Markdown",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
         )
