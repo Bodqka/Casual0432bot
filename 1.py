@@ -114,9 +114,9 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == 'olx':
         await query.message.reply_photo(
             photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
+            caption="Наша сторінка на OLX:\n[Переглянути OLX](https://www.olx.ua/uk/list/user/vXRAm/)",
             parse_mode="Markdown",
-            [InlineKeyboardButton("OLX", url="https://www.olx.ua/uk/list/user/vXRAm/")],
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]]
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
         )
     
     elif query.data == 'shafa':
