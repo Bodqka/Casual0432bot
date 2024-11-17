@@ -108,13 +108,14 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ]
         await query.message.reply_text("Оберіть категорію товарів:", reply_markup=InlineKeyboardMarkup(keyboard))
   
-    elif query.data == 'olx':
-        await query.message.reply_photo(
-            photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
-            caption="Наша сторінка на OLX:\n[Переглянути OLX](https://www.olx.ua/uk/list/user/vXRAm/)",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]])
-        )
+  elif query.data == 'olx':
+    await query.message.reply_photo(
+        photo="https://drive.google.com/uc?export=view&id=14hjS6RyWKJ4y9oI9igs8BjmHOlKZ-Ge0",
+        caption="Наша сторінка на OLX:",
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("Переглянути OLX", url="https://www.olx.ua/uk/list/user/vXRAm/")],
+            [InlineKeyboardButton("Повернутися назад◀", callback_data='main_menu')]
+        ])
     
     elif query.data == 'shafa':
         await query.message.reply_photo(
